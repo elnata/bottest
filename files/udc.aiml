@@ -2,6 +2,40 @@
 <aiml>
   <category>
     <pattern>*</pattern>
-    <template>I have no answer for that.</template>
+    <template>Não entendi, pode falar de outra forma?</template>
   </category>
+  <category>
+    <pattern>oi</pattern>
+    <template>Olá, qual é seu nome?</template>
+  </category>
+    <category>
+        <pattern>Meu nome é *</pattern>
+        <template>Fala aí, <set name="name"><star/></set>, como posso te ajudar</template>
+    </category>
+  <category>
+    <pattern>* é meu nome</pattern>
+    <template>
+        <random>
+          <li><get name="name"/></li>
+          <li>Seu nome é <get name="name"/></li>
+          <li>Tá esquecido hein <get name="name"/></li>
+        </random>
+    </template>
+ </category>
+ <category>
+    <pattern>Conte de * ate <set>number</set></pattern>
+        <template>
+            <think><set name="count"><star/></set></think>
+                <condition name="count">
+                    <li><value><star index="2"/></value></li>
+                    <li>
+                        <set name="count">
+                            <map><name>successor</name><get name="count"/></map>
+                        </set>
+                        <loop/>
+                    </li>
+                </condition>
+        </template>
+</category>
+
 </aiml>
